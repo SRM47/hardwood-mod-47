@@ -1,0 +1,11 @@
+{
+  "type": "hardwoodmod:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/wither_skeleton"
+    }
+  ],
+  "item": "hardwoodmod:withermelon_seeds",
+  "chance": 0.1
+}

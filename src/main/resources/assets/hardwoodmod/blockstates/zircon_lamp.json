@@ -1,0 +1,7 @@
+
+{
+  "variants": {
+    "lit=true": {"model":  "hardwoodmod:block/zircon_lamp_on"},
+    "lit=false": {"model":  "hardwoodmod:block/zircon_lamp_off"}
+  }
+}

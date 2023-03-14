@@ -1,0 +1,22 @@
+{
+  "item.hardwoodmod.zircon": "Zircon",
+  "item.hardwoodmod.raw_zircon": "Raw Zircon",
+  "item.hardwoodmod.withermelon": "Withermelon",
+  "item.hardwoodmod.withermelon_seeds": "Withermelon Seeds",
+  "item.hardwoodmod.withermelon_crop": "Withermelon Crop",
+  "item.hardwoodmod.withermelon_tea": "Withermelon Tea",
+  "item.hardwoodmod.alcohol_bottle": "Alcohol",
+  "item.hardwoodmod.harwood_special": "The Harwood Special",
+
+  "block.hardwoodmod.zircon_block": "Zircon Block",
+  "block.hardwoodmod.zircon_ore": "Zircon Ore",
+  "block.hardwoodmod.zircon_lamp": "Zircon Lamp",
+
+
+  "creativemodetab.tutorial": "Tut 1",
+  "creativemodetab.tutorial2": "Tut 2",
+
+  "effects.hardwoodmod.harwood_special_effect_tier_1": "The Harwood Special I",
+  "effects.hardwoodmod.harwood_special_effect_tier_2": "The Harwood Special II",
+  "effects.hardwoodmod.harwood_special_effect_tier_3": "The Harwood Special III"
+}

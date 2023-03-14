@@ -1,8 +1,21 @@
 package com.sameermalik.hardwoodmod;
 
 import com.mojang.logging.LogUtils;
+import com.sameermalik.hardwoodmod.block.ModBlocks;
+import com.sameermalik.hardwoodmod.effect.ModEffects;
+import com.sameermalik.hardwoodmod.event.loot.ModLootModifiers;
+import com.sameermalik.hardwoodmod.item.ModCreativeModeTabs;
+import com.sameermalik.hardwoodmod.item.ModItems;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,16 +47,57 @@ public class HardwoodMod {
     public HardwoodMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        // global loot tables
+        ModLootModifiers.register(modEventBus);
+        // register custom effects
+        ModEffects.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+
+
+        
+        modEventBus.addListener(this::addCreative);
+
+    }
+
+    private void addCreative(CreativeModeTabEvent.BuildContents event) {
+        // Add to ingredients tab
+        if (event.getTab() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.ZIRCON);
+            event.accept(ModItems.RAW_ZIRCON);// Takes in an ItemLike, assumes block has registered item
+            event.accept(ModItems.WITHERMELON);
+            event.accept(ModItems.WITHERMELON_SEEDS);
+            event.accept(ModItems.WITHERMELON_TEA);
+            event.accept(ModItems.ALCOHOL_BOTTLE);
+            event.accept(ModItems.THE_HARWOOD_SPECIAL);
+        }
+
+
+
+        // Add to ingredients tab
+        // this is our custom tab which we created in the other class
+        if (event.getTab() == ModCreativeModeTabs.CREATIVE_TAB_1) {
+            event.accept(ModItems.ZIRCON); // Takes in an ItemLike, assumes block has registered item
+        }
+
+        // we aren't adding CREATIVE_TAB_2 because we've already initialized the object in that creative tab
+
+        if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(ModBlocks.ZIRCON_BLOCK);
+            event.accept(ModBlocks.ZIRCON_ORE);
+            event.accept(ModBlocks.ZIRCON_LAMP);
+        }
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(Items.POTION), Ingredient.of(Items.WHEAT), new ItemStack(ModItems.ALCOHOL_BOTTLE.get()));
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -51,6 +105,7 @@ public class HardwoodMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.WITHERMELON_CROP.get(), RenderType.cutout());
         }
     }
 }
