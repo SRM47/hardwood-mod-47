@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "misc",
+  "ingredients": [
+    {
+      "item": "hardwoodmod:alcohol_bottle"
+    },
+    {
+      "item": "hardwoodmod:withermelon_tea"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    }
+  ],
+  "result": {
+    "item": "hardwoodmod:harwood_special",
+    "count": 2
+  }
+}
