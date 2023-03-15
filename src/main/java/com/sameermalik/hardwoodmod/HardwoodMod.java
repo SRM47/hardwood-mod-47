@@ -9,9 +9,11 @@ import com.sameermalik.hardwoodmod.item.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
@@ -22,6 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -84,7 +87,15 @@ public class HardwoodMod {
         // Add to ingredients tab
         // this is our custom tab which we created in the other class
         if (event.getTab() == ModCreativeModeTabs.CREATIVE_TAB_1) {
-            event.accept(ModItems.ZIRCON); // Takes in an ItemLike, assumes block has registered item
+            // event.accept(ModItems.ZIRCON); // Takes in an ItemLike, assumes block has registered item
+            // register the items
+            for(RegistryObject r: ModItems.ITEMS.getEntries()){
+                event.accept((Item) r.get());
+            }
+            // register the blocks
+            for(RegistryObject r: ModBlocks.BLOCKS.getEntries()){
+                event.accept((Block) r.get());
+            }
         }
 
         // we aren't adding CREATIVE_TAB_2 because we've already initialized the object in that creative tab

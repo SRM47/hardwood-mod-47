@@ -49,6 +49,15 @@ public class ModBlocks {
             new Item.Properties()
                     .stacksTo(64));
 
+    public static final RegistryObject<Block> DEEPSLATE_ZIRCON_ORE = registerBlock("deepslate_zircon_ore",
+            // this is a type of block that drops xp
+            () -> new DropExperienceBlock(BlockBehaviour.Properties
+                    .of(Material.METAL)
+                    .strength(4f)
+                    .requiresCorrectToolForDrops(), UniformInt.of(2,6)), // drops between 2-6 experiences
+            new Item.Properties()
+                    .stacksTo(64));
+
     // we dont want a separate item so we're only registering the block in the block deferred register
     // instead, we want to add the seeds and the drop as items in the Mod Items class
     public static final RegistryObject<Block> WITHERMELON_CROP = BLOCKS.register("withermelon_crop",

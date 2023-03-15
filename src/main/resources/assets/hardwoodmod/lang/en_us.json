@@ -10,11 +10,11 @@
 
   "block.hardwoodmod.zircon_block": "Zircon Block",
   "block.hardwoodmod.zircon_ore": "Zircon Ore",
+  "block.hardwoodmod.deepslate_zircon_ore": "Deepslate Zircon Ore",
   "block.hardwoodmod.zircon_lamp": "Zircon Lamp",
 
 
-  "creativemodetab.tutorial": "Tut 1",
-  "creativemodetab.tutorial2": "Tut 2",
+  "creativemodetab.mod_items": "The Harwood Mod Items",
 
   "effects.hardwoodmod.harwood_special_effect_tier_1": "The Harwood Special I",
   "effects.hardwoodmod.harwood_special_effect_tier_2": "The Harwood Special II",

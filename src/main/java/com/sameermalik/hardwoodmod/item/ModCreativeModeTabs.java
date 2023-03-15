@@ -19,9 +19,9 @@ public class ModCreativeModeTabs {
     public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
         CREATIVE_TAB_1 = event.registerCreativeModeTab(new ResourceLocation(HardwoodMod.MOD_ID, "tab1"), builder ->
                         // Set name of tab to display
-                        builder.title(Component.translatable("creativemodetab.tutorial"))
+                        builder.title(Component.translatable("creativemodetab.mod_items"))
                                 // Set icon of creative tab
-                                .icon(() -> new ItemStack(ModItems.ZIRCON.get()))
+                                .icon(() -> new ItemStack(ModItems.THE_HARWOOD_SPECIAL.get()))
                 // Add default items to tab
                         /* these functins return this so its stackable
                         .displayItems((enabledFlags, populator, hasPermissions) -> {
@@ -32,7 +32,7 @@ public class ModCreativeModeTabs {
 
         );
 
-
+    /*
         CREATIVE_TAB_2 = event.registerCreativeModeTab(new ResourceLocation(HardwoodMod.MOD_ID, "tab2"), builder ->
                 // Set name of tab to display
                 builder.title(Component.translatable("creativemodetab.tutorial2"))
@@ -44,6 +44,8 @@ public class ModCreativeModeTabs {
                         })
 
         );
+       */
+
 
     }
 

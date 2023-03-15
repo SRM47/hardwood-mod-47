@@ -63,7 +63,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> THE_HARWOOD_SPECIAL = ITEMS.register("harwood_special",
             () -> new HarwoodSpecialBottleItem(new Item.Properties()
-                    .stacksTo(1)));
+                    .stacksTo(1)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .build())));
 
     /* for a custom creative tab we call this function
 

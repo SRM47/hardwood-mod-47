@@ -23,30 +23,30 @@ public class WithermelonTeaItem extends HoneyBottleItem {
         return this.DRINK_DURATION;
     }
 
-    public ItemStack finishUsingItem(ItemStack p_41348_, Level p_41349_, LivingEntity p_41350_) {
-        super.finishUsingItem(p_41348_, p_41349_, p_41350_);
-        if (p_41350_ instanceof ServerPlayer serverplayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, p_41348_);
+    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
+        super.finishUsingItem(itemStack, level, livingEntity);
+        if (livingEntity instanceof ServerPlayer serverplayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, itemStack);
             serverplayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!p_41349_.isClientSide) {
+        if (!level.isClientSide) {
             // allow drinking witherermelon tea to remove wither
-            p_41350_.removeEffect(MobEffects.WITHER);
+            livingEntity.removeEffect(MobEffects.WITHER);
         }
 
-        if (p_41348_.isEmpty()) {
+        if (itemStack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
         } else {
-            if (p_41350_ instanceof Player && !((Player)p_41350_).getAbilities().instabuild) {
+            if (livingEntity instanceof Player && !((Player)livingEntity).getAbilities().instabuild) {
                 ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-                Player player = (Player)p_41350_;
+                Player player = (Player)livingEntity;
                 if (!player.getInventory().add(itemstack)) {
                     player.drop(itemstack, false);
                 }
             }
 
-            return p_41348_;
+            return itemStack;
         }
     }
 }

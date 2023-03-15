@@ -1,5 +1,6 @@
 package com.sameermalik.hardwoodmod.item.custom;
 
+import com.sameermalik.hardwoodmod.effect.HarwoodSpecialEffect;
 import com.sameermalik.hardwoodmod.effect.ModEffects;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
@@ -35,9 +36,11 @@ public class HarwoodSpecialBottleItem extends HoneyBottleItem {
         }
 
         if (!level.isClientSide) {
-            // remove all of the non-benefitial effects existing on the player
+            // remove all the non-beneficial effects existing on the player
             for (MobEffectInstance me: livingEntity.getActiveEffects()){
-                if(!me.getEffect().isBeneficial()){
+                // only remove if the effect is not beneficial and if it's not the harwood effect
+
+                if(!me.getEffect().isBeneficial() && !(me.getEffect() instanceof HarwoodSpecialEffect)){
                     livingEntity.removeEffect(me.getEffect());
                 }
             }
